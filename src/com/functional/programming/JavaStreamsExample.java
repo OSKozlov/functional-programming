@@ -1,5 +1,6 @@
 package com.functional.programming;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -14,6 +15,10 @@ public class JavaStreamsExample {
 		integerStreamWithSum();
 		
 		integerStreamWithSortedAndFindFirst();
+		
+		stringStreamSortFilterAndPrint();
+		
+		averageOfSquares();
 	}
 	
 	private static void integerStreamExample() {
@@ -47,6 +52,23 @@ public class JavaStreamsExample {
 			.sorted()
 			.findFirst()
 			.ifPresent(System.out::println);
-//		System.out.println("Summary: " + sum + "\n");
+	}
+	
+	private static void stringStreamSortFilterAndPrint() {
+		// 5.
+		String[] names = {"Al", "Ankit", "Kushal", "Brent", "Sarika", "amanda", "Hans", "Shivika", "Sarah"};
+		Arrays.stream(names)
+			.filter(x -> x.startsWith("S"))
+			.sorted()
+			.forEach(System.out::println);
+		
+	}
+	
+	private static void averageOfSquares() {
+		// 6. average of squares of an int array
+		Arrays.stream(new int[] {2, 4, 6, 8, 10})
+			.map(x -> x*x)
+			.average()
+			.ifPresent(System.out::println);
 	}
 }
