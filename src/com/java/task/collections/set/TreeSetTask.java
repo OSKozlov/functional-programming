@@ -8,7 +8,7 @@ public class TreeSetTask {
 	
 	public static void main(String[] args){
 		
-		// In TreeSet uniqueness is ensured by compare, in Set by equals
+		// In TreeSet uniqueness and order is ensured by compare, in Set by equals
 		Set<Integer> set = new TreeSet<>(new Comparator<Integer>(){
 			@Override
 			public int compare(Integer o1, Integer o2) {
