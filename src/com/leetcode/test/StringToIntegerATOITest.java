@@ -24,6 +24,12 @@ class StringToIntegerATOITest {
 	}
 	
 	@Test
+	void testWhiteSpaces() {
+		StringToIntegerATOI atoi = new StringToIntegerATOI();
+		assertEquals(0, atoi.myAtoi(" "));
+	}
+	
+	@Test
 	void testSignless() {
 		StringToIntegerATOI atoi = new StringToIntegerATOI();
 		assertEquals(3, atoi.myAtoi("3.14159"));
@@ -37,6 +43,6 @@ class StringToIntegerATOITest {
 		assertEquals(-2147483648, atoi.myAtoi("-91283472332"));
 		assertEquals(2147483646, atoi.myAtoi("2147483646"));
 		assertEquals(-2147483647, atoi.myAtoi("-2147483647"));
-//		assertEquals(2147483647, atoi.myAtoi("2147483648"));	
+		assertEquals(2147483647, atoi.myAtoi("2147483648"));	
 	}
 }
