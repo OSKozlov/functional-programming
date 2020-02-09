@@ -2,70 +2,86 @@ package com.leetcode.java;
 
 public class AddTwoNumbers {
 	
-	public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-		ListNode fake = new ListNode(0);
-		ListNode p = fake;
+	static Node head1, head2;
+	
+	public Node addTwoNumbers(Node first, Node second) {
+		Node res = null;
+		Node prev = null;
+		Node temp = null;
+		int carry = 0, sum;
 		
-		ListNode p1 = l1;
-		ListNode p2 = l2;
-		
-		int carry = 0;
-		while(p1 != null || p2 != null) {
-			int sum = carry;
-			if (p1 != null) {
-				sum += p1.val;
-				p1 = p1.next;
-			}
+		while(first != null || second != null) {
+			sum = carry + (first != null ? first.data : 0) +
+					(second != null ? second.data : 0);
 			
-			if (p2 != null) {
-				sum += p2.val;
-				p2 = p2.next;
-			}
+			carry = (sum>=10) ? 1 : 0;
 			
-			if (sum > 9) {
-				carry = 1;
-				sum = sum-10;
+			sum = sum % 10;
+			
+			temp = new Node(sum);
+			
+			if (res == null) {
+				res = temp;
 			} else {
-				carry = 0;
+				prev.next = temp;
 			}
 			
-			ListNode l = new ListNode(sum);
-			p.next = l;
-			p = p.next;
+			// Set prev for next insertion 
+            prev = temp; 
+            
+			if (first != null) {
+				first = first.next;
+			}
+			if (second != null) {
+				second = second.next;
+			}
+			
 		}
 		
-		if (carry > 0) {
-			ListNode l = new ListNode(carry);
-			p.next = l;
-		}
-		return fake.next;
+		if (carry > 0) { 
+            temp.next = new Node(carry); 
+        } 
+		
+		return res;
 	}
 
 	/**
 	 * Definition for singly-linked list. public class ListNode { int val; ListNode
 	 * next; ListNode(int x) { val = x; } }
 	 */
-	public class ListNode {
-		int val;
-		ListNode next;
+	static class Node {
+		int data;
+		Node next;
 
-		ListNode(int x) {
-			val = x;
+		Node(int x) {
+			data = x;
+			next = null;
 		}
 	}
 	
-	public static void main(String[] args) {
-		AddTwoNumbers twoNumbers = new AddTwoNumbers();
-		int[] x1 = new int[]{2,4,3};
-		int[] x2 = new int[]{5,6,4};
-		ListNode result = null;
-		for(int i=0; i<x1.length; i++) {
-			result = twoNumbers.new ListNode(0);
-			ListNode node1 = twoNumbers.new ListNode(x1[i]);
-			ListNode node2 = twoNumbers.new ListNode(x2[i]);
-			result = twoNumbers.addTwoNumbers(node1, node2);
-			System.out.println("### res = " + result.val);
+	static void printList(Node head) {
+		while(head != null) {
+			System.out.println(head.data + " ");
+			head = head.next;
 		}
+		System.out.println("");
+	}
+	
+	public static void main(String[] args) {
+		AddTwoNumbers addTwoNumbers = new AddTwoNumbers();
+		
+		addTwoNumbers.head1 = new Node(2);
+		addTwoNumbers.head1.next = new Node(3);
+		addTwoNumbers.head1.next.next = new Node(5);
+		printList(head1);
+		
+		addTwoNumbers.head2 = new Node(9);
+		addTwoNumbers.head2.next = new Node(4);
+		addTwoNumbers.head2.next.next = new Node(2);
+		printList(head2);
+		
+		Node result = addTwoNumbers.addTwoNumbers(head1, head2);
+		printList(result);
 		
 	}
 
