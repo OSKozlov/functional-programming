@@ -7,7 +7,7 @@ public class Counter {
 		for (int i = 0; i < 1000000; i++) {
 			a = a + Math.tan(a);
 		}
-
+		// comment 2
 		return a;
 	}
 }
