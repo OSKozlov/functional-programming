@@ -9,5 +9,6 @@ public class Counter {
 		}
 		// comment 2
 		return a;
+		// comment 3
 	}
 }
