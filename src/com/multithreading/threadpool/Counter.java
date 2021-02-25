@@ -8,7 +8,7 @@ public class Counter {
 			a = a + Math.tan(a);
 			// commit2
 		}
-
+		// commit3
 		return a;
 	}
 }
