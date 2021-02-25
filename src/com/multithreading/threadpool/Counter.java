@@ -12,4 +12,5 @@ public class Counter {
 		return a;
 		// commit4
 	}
+	// commit5
 }
